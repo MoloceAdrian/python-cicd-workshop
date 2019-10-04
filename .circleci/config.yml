@@ -28,11 +28,9 @@ jobs:
             - v1-dependencies-
 
       - run:
-          name: install dependencies
+          name: Install Python Dependencies
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
+            pip install --user --no-cache-dir -r requirements.txt
 
       - save_cache:
           paths:
@@ -46,9 +44,7 @@ jobs:
       # https://nose.readthedocs.io
       - run:
           name: run tests
-          command: |
-            . helloworld/bin/activate
-            python test_hello_world.py
+          command: ~/.local/bin/pytest
 
       - store_artifacts:
           path: test-reports
